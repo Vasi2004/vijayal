@@ -187,18 +187,18 @@ export function MusicWidget({ gsapReady }) {
             }}
           />
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 9.5, color: "#a2937a", marginTop: 2 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, color: "#7a5a3a", marginTop: 2, fontWeight: 500 }}>
           <span>{fmtTime(scrubbing ? scrubTime : curTime)}</span>
           <span>{fmtTime(duration)}</span>
         </div>
       </div>
-
+      
       <div
         title={songName}
         style={{
-          marginTop: 7, width: 125, minHeight: 30,
-          fontSize: 11.5, lineHeight: 1.3, fontWeight: 600,
-          color: current ? "#6b5836" : "#a2937a",
+          marginTop: 7, width: 125, minHeight: 34,
+          fontSize: 13.5, lineHeight: 1.3, fontWeight: 700,
+          color: current ? "#4a3b28" : "#8a755a",
           display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical",
           overflow: "hidden", wordBreak: "break-word",
         }}
@@ -206,7 +206,7 @@ export function MusicWidget({ gsapReady }) {
         {songName}
       </div>
       {counter ? (
-        <div style={{ fontSize: 9.5, color: "#a2937a", marginTop: 1, letterSpacing: ".04em" }}>{counter}</div>
+        <div style={{ fontSize: 11, color: "#7a5a3a", marginTop: 2, fontWeight: 600, letterSpacing: ".04em" }}>{counter}</div>
       ) : null}
       <div style={{ marginTop: 6, display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}>
         <button onClick={() => step(-1)} aria-label="Previous song" className="btn btn-yellow" style={ctrl}>
