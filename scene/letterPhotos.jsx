@@ -47,6 +47,16 @@ export function photoBackgroundStyle(dataUrl, ratio, pos, zoom) {
   };
 }
 
+/* renders a single frame's actual image content -- shared by the writing
+   screen and the letter reveal so a photo looks identical in both */
+export function PhotoFrame({ shape, dataUrl, imgRatio, pos, zoom }) {
+  const style = photoBackgroundStyle(dataUrl, imgRatio, pos, zoom);
+  if (shape === "polaroid") {
+    return <div className="pf-frame-body"><div className="pf-polaroid-img" style={style} /></div>;
+  }
+  return <div className="pf-frame-body" style={style} />;
+}
+
 /* renders the shared clip-path <defs> once -- mount this exactly once,
    high enough in the tree (App.jsx) that it's always present whether
    you're writing a letter or reading one, since both rely on these ids */
