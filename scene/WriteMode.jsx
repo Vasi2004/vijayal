@@ -10,7 +10,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { LETTER_THEMES, THEME_ORDER } from "./letterThemes.js";
-import { PHOTO_SHAPES, MAX_LETTER_PHOTOS, photoBackgroundStyle } from "./letterPhotos.jsx";
+import { PHOTO_SHAPES, MAX_LETTER_PHOTOS, PhotoFrame, photoBackgroundStyle } from "./letterPhotos.jsx";
 import { uid } from "../store.jsx";
 
 const RECIPIENT_NAME = { his: "Vasi", hers: "Vijayal" };
@@ -267,16 +267,6 @@ function ShapePopup({ dataUrl, imgRatio, shape, setShape, pos, setPos, zoom, set
       </div>
     </div>
   );
-}
-
-/* ===================== a single frame's rendered image ===================== */
-
-export function PhotoFrame({ shape, dataUrl, imgRatio, pos, zoom }) {
-  const style = photoBackgroundStyle(dataUrl, imgRatio, pos, zoom);
-  if (shape === "polaroid") {
-    return <div className="pf-frame-body"><div className="pf-polaroid-img" style={style} /></div>;
-  }
-  return <div className="pf-frame-body" style={style} />;
 }
 
 /* ===================== a placed, draggable/resizable/rotatable photo ===================== */
