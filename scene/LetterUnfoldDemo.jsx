@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState, useMemo } from "react";
 import { LETTER_THEMES, petalTypesFor } from "./letterThemes.js";
+import { PhotoFrame } from "./letterPhotos.jsx";
 
 const rand = (a, b) => a + Math.random() * (b - a);
 
@@ -490,7 +491,29 @@ export function LetterUnfoldDemo({ letter, onClose }) {
         .lud-letter-text .lud-sign-off {
           display: block;
           font-size: 1.1em;
+          text-align: right;
         }
+        .lud-letter-text .lud-greeting {
+          font-size: 1.15em;
+          margin-bottom: 6%;
+        }
+
+        /* photos placed while writing, shown exactly where and how they
+           were positioned -- no drag/resize/rotate handles here, this is
+           read-only, matching how petals/bubbles sit behind the letter */
+        .pf-placed-photo { position: absolute; z-index: 4; }
+        .pf-frame-preview, .pf-frame-body { background-size: cover; background-position: center; width: 100%; height: 100%; position: relative; }
+        .pf-frame-square .pf-frame-body { border-radius: 4px; border: 3px solid #fff; box-shadow: 0 3px 10px rgba(0,0,0,.2); }
+        .pf-frame-circle .pf-frame-body { border-radius: 50%; border: 3px solid #fff; box-shadow: 0 3px 10px rgba(0,0,0,.2); }
+        .pf-frame-oval .pf-frame-body { border-radius: 50%; border: 3px solid #fff; box-shadow: 0 3px 10px rgba(0,0,0,.2); }
+        .pf-frame-oval.pf-placed-photo { aspect-ratio: 4 / 3; }
+        .pf-frame-star .pf-frame-body { clip-path: url(#starClip); box-shadow: 0 3px 10px rgba(0,0,0,.2); }
+        .pf-frame-heart .pf-frame-body { clip-path: url(#heartClip); box-shadow: 0 3px 10px rgba(0,0,0,.2); }
+        .pf-frame-arch .pf-frame-body { border-radius: 50% 50% 4px 4px / 30% 30% 4px 4px; border: 3px solid #fff; box-shadow: 0 3px 10px rgba(0,0,0,.2); }
+        .pf-frame-cloud .pf-frame-body { clip-path: url(#cloudClip); box-shadow: 0 3px 10px rgba(0,0,0,.2); }
+        .pf-frame-flower .pf-frame-body { clip-path: url(#flowerClip); box-shadow: 0 3px 10px rgba(0,0,0,.2); }
+        .pf-frame-polaroid .pf-frame-body { background: #fff; padding: 8% 8% 22% 8%; box-shadow: 0 4px 12px rgba(0,0,0,.25); }
+        .pf-frame-polaroid .pf-frame-body .pf-polaroid-img { width: 100%; height: 100%; background-size: cover; background-position: center; }
       `}</style>
 
       <div
@@ -554,10 +577,25 @@ export function LetterUnfoldDemo({ letter, onClose }) {
               <div className="lud-crease lud-crease-1" />
               <div className="lud-crease lud-crease-2" />
               <div ref={letterTextRef} className="lud-letter-text">
+                {letter && letter.greeting && <div className="lud-greeting">{letter.greeting}</div>}
                 <div className="lud-body-content">{letter && letter.body}</div>
                 <div className="lud-sign-off">{letter && letter.signoff}</div>
               </div>
             </div>
+
+            {letter && letter.photos && letter.photos.map((photo) => (
+              <div
+                key={photo.id}
+                className={"pf-placed-photo pf-frame-" + photo.shape}
+                style={{
+                  left: (photo.xPct ?? 10) + "%", top: (photo.yPct ?? 10) + "%", width: (photo.sizePct ?? 22) + "%",
+                  aspectRatio: photo.shape === "oval" ? "4 / 3" : "1 / 1",
+                  transform: `rotate(${photo.rotation || 0}deg)`,
+                }}
+              >
+                <PhotoFrame shape={photo.shape} dataUrl={photo.dataUrl} imgRatio={photo.imgRatio} pos={{ x: photo.posX, y: photo.posY }} zoom={photo.zoom} />
+              </div>
+            ))}
           </div>
         </div>
       </div>

@@ -12,6 +12,7 @@ import { LoginGate } from "./sections/login.jsx";
 import { MailboxSection, emptyDraft } from "./sections/mailbox.jsx";
 import { MusicWidget } from "./music.jsx";
 import { AmbientBackground } from "./scene/scene.jsx";
+import { PhotoFrameDefs } from "./scene/letterPhotos.jsx";
 import { store } from "./store.jsx";
 import { GlobalStyles } from "./styles.jsx";
 import { TimelineSection } from "./sections/timeline.jsx";
@@ -98,6 +99,7 @@ export default function App() {
     <div className="us-root" style={{ minHeight: "100vh", position: "relative" }}>
       <GlobalStyles />
       <AmbientBackground theme={theme} active={loggedIn} />
+      <PhotoFrameDefs />
       <DayNightToggle theme={theme} setTheme={setTheme} />
       {loggedIn && <MusicWidget gsapReady={gsapReady} />}
       {loggedIn && <PhotoCarousel sleeves={sleeves} />}

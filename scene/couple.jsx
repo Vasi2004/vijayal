@@ -9,7 +9,7 @@ import { PixelHeart } from "./doodles.jsx";
 import { prefersReducedMotion } from "../gsap.js";
 import { SPRITES } from "./sprites.js";
 
-export function PixelCouple({ active, night }) {
+export function PixelCouple({ active }) {
   const stripRef = useRef(null);
   const boyRef = useRef(null);
   const girlRef = useRef(null);
@@ -248,12 +248,7 @@ export function PixelCouple({ active, night }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reduced, active]);
 
-const spriteBase = { 
-    imageRendering: "pixelated", 
-    backgroundRepeat: "no-repeat",
-    filter: night ? 'brightness(0.75) contrast(1.1) sepia(0.3) hue-rotate(-15deg)' : 'none',
-    transition: 'filter 2s ease-in-out'
-  };
+  const spriteBase = { imageRendering: "pixelated", backgroundRepeat: "no-repeat" };
   const charBase = { position: "absolute", bottom: 0, left: 0, willChange: "transform" };
 
   if (!active) return null;

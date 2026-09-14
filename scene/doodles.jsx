@@ -4,7 +4,6 @@
    their night glow, and the day/night switch. */
 
 import { PixelHouse } from "./pixelart.jsx";
-import { useEffect, useRef } from "react";
 
 /* ===================== Little doodles (SVG) ===================== */
 
@@ -27,54 +26,23 @@ export const GrassTuft = ({ h = 30, dur = "3s", delay = "0s" }) => (
   </svg>
 );
 
-export const BunnyDoodle = ({ size = 56 }) => {
-  const bunnyRef = useRef(null);
-
-  useEffect(() => {
-    const el = bunnyRef.current;
-    if (!el) return;
-
-    let timeoutId;
-    const hop = () => {
-      if (window.gsap) {
-        window.gsap.to(el, {
-          y: -12,
-          duration: 0.18,
-          yoyo: true,
-          repeat: 1,
-          ease: "power1.out",
-          onComplete: () => {
-            const randomDelay = (4 + Math.random() * 6) * 1000;
-            timeoutId = setTimeout(hop, randomDelay);
-          }
-        });
-      }
-    };
-
-    const initialDelay = (3 + Math.random() * 5) * 1000;
-    timeoutId = setTimeout(hop, initialDelay);
-
-    return () => clearTimeout(timeoutId);
-  }, []);
-
-  return (
-    <svg ref={bunnyRef} className="breather" width={size} height={size} viewBox="0 0 60 60" aria-hidden="true" style={{ willChange: "transform" }}>
-      <g className="ear">
-        <ellipse cx="24" cy="16" rx="5" ry="12" fill="#fdf3e3" stroke="#c9ab84" strokeWidth="2" />
-        <ellipse cx="24" cy="17" rx="2.2" ry="8" fill="#f6cdd4" />
-      </g>
-      <ellipse cx="36" cy="16" rx="5" ry="12" fill="#fdf3e3" stroke="#c9ab84" strokeWidth="2" />
-      <ellipse cx="36" cy="17" rx="2.2" ry="8" fill="#f6cdd4" />
-      <ellipse cx="30" cy="42" rx="17" ry="14" fill="#fdf3e3" stroke="#c9ab84" strokeWidth="2" />
-      <circle cx="24" cy="38" r="1.8" fill="#4a3b28" />
-      <circle cx="36" cy="38" r="1.8" fill="#4a3b28" />
-      <path d="M27 44 q3 3 6 0" stroke="#4a3b28" strokeWidth="1.8" fill="none" strokeLinecap="round" />
-      <ellipse cx="30" cy="42.5" rx="1.8" ry="1.3" fill="#f3a5b5" />
-      <circle cx="19" cy="43" r="2.6" fill="#f6cdd4" opacity=".8" />
-      <circle cx="41" cy="43" r="2.6" fill="#f6cdd4" opacity=".8" />
-    </svg>
-  );
-};
+export const BunnyDoodle = ({ size = 56 }) => (
+  <svg className="breather" width={size} height={size} viewBox="0 0 60 60" aria-hidden="true">
+    <g className="ear">
+      <ellipse cx="24" cy="16" rx="5" ry="12" fill="#fdf3e3" stroke="#c9ab84" strokeWidth="2" />
+      <ellipse cx="24" cy="17" rx="2.2" ry="8" fill="#f6cdd4" />
+    </g>
+    <ellipse cx="36" cy="16" rx="5" ry="12" fill="#fdf3e3" stroke="#c9ab84" strokeWidth="2" />
+    <ellipse cx="36" cy="17" rx="2.2" ry="8" fill="#f6cdd4" />
+    <ellipse cx="30" cy="42" rx="17" ry="14" fill="#fdf3e3" stroke="#c9ab84" strokeWidth="2" />
+    <circle cx="24" cy="38" r="1.8" fill="#4a3b28" />
+    <circle cx="36" cy="38" r="1.8" fill="#4a3b28" />
+    <path d="M27 44 q3 3 6 0" stroke="#4a3b28" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+    <ellipse cx="30" cy="42.5" rx="1.8" ry="1.3" fill="#f3a5b5" />
+    <circle cx="19" cy="43" r="2.6" fill="#f6cdd4" opacity=".8" />
+    <circle cx="41" cy="43" r="2.6" fill="#f6cdd4" opacity=".8" />
+  </svg>
+);
 
 /* ===================== Pixel-art houses & trees =====================
    Blocky, low-res grids rendered as crisp SVG rects, matching the retro
@@ -177,42 +145,16 @@ export const PixelHeart = ({ size = 24, fill = "#f3a5b5", shade = "#ef93ae", opa
   </svg>
 );
 
-export const Lantern = ({ size = 62 }) => {
-  const glowRef = useRef(null);
-
-  useEffect(() => {
-    if (!window.gsap) return;
-    const tl = window.gsap.timeline({ repeat: -1, yoyo: true });
-    tl.to(glowRef.current, {
-      opacity: 0.45,
-      duration: 0.12,
-      ease: "power1.inOut"
-    })
-    .to(glowRef.current, {
-      opacity: 0.9,
-      duration: 0.25,
-      ease: "power1.inOut"
-    })
-    .to(glowRef.current, {
-      opacity: 0.6,
-      duration: 0.18,
-      ease: "power1.inOut"
-    });
-
-    return () => tl.kill();
-  }, []);
-
-  return (
-    <svg width={size} height={size * 1.9} viewBox="0 0 62 118" aria-hidden="true" style={{ display: "block" }}>
-      <circle className="lantern-glow" cx="31" cy="34" r="26" fill="#ffd98a" opacity=".55" />
-      <path d="M31 118 V52" stroke="#7a5a3a" strokeWidth="6" strokeLinecap="round" />
-      <rect x="19" y="18" width="24" height="32" rx="8" fill="#fff0c2" stroke="#8b6f47" strokeWidth="3" />
-      <path d="M23 12 h16 l3 6 h-22 z" fill="#c98d5a" stroke="#8b6f47" strokeWidth="2.6" strokeLinejoin="round" />
-      <circle ref={glowRef} className="lantern-glow" cx="31" cy="34" r="7" fill="#ffc94d" style={{ willChange: "opacity" }} />
-      <path d="M22 118 h18" stroke="#7a5a3a" strokeWidth="6" strokeLinecap="round" />
-    </svg>
-  );
-};
+export const Lantern = ({ size = 62 }) => (
+  <svg width={size} height={size * 1.9} viewBox="0 0 62 118" aria-hidden="true" style={{ display: "block" }}>
+    <circle className="lantern-glow" cx="31" cy="34" r="26" fill="#ffd98a" opacity=".55" />
+    <path d="M31 118 V52" stroke="#7a5a3a" strokeWidth="6" strokeLinecap="round" />
+    <rect x="19" y="18" width="24" height="32" rx="8" fill="#fff0c2" stroke="#8b6f47" strokeWidth="3" />
+    <path d="M23 12 h16 l3 6 h-22 z" fill="#c98d5a" stroke="#8b6f47" strokeWidth="2.6" strokeLinejoin="round" />
+    <circle className="lantern-glow" cx="31" cy="34" r="7" fill="#ffc94d" style={{ animationDelay: "-1.2s" }} />
+    <path d="M22 118 h18" stroke="#7a5a3a" strokeWidth="6" strokeLinecap="round" />
+  </svg>
+);
 
 export const NightGlow = ({ size = 80, tone = "255,201,77", core = true, coreTone = null, delay = "0s", style = {} }) => (
   <div className="lantern-glow" style={{ position: "absolute", width: size, height: size, borderRadius: "50%", background: `radial-gradient(circle, rgba(${tone},.72) 0%, rgba(${tone},.26) 45%, transparent 70%)`, animationDelay: delay, ...style }}>

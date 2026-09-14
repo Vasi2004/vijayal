@@ -7,20 +7,19 @@ import { useState, useEffect, useRef } from "react";
 import { prefersReducedMotion } from "./gsap.js";
 
 export const PLAYLIST = [
-  { title: "Adada Mazhaida", src: "https://aqhkecknthcdpailpcst.supabase.co/storage/v1/object/public/music/Adada-Mazhaida.mp3" },
-  { title: "Dippam Dappam", src: "https://aqhkecknthcdpailpcst.supabase.co/storage/v1/object/public/music/Dippam-Dappam-MassTamilan.so.mp3" },
-  { title: "Entammede Jimikki Kammal", src: "https://aqhkecknthcdpailpcst.supabase.co/storage/v1/object/public/music/Entammede%20Jimikki%20Kammal.mp3" },
-  { title: "Katchi Sera", src: "https://aqhkecknthcdpailpcst.supabase.co/storage/v1/object/public/music/Katchi%20Sera.mp3" },
-  { title: "Kuchi Mittai", src: "https://aqhkecknthcdpailpcst.supabase.co/storage/v1/object/public/music/Kuchi%20Mittai.mp3" },
-  { title: "Monica", src: "https://aqhkecknthcdpailpcst.supabase.co/storage/v1/object/public/music/Monica.mp3" },
-  { title: "Oru Maalai", src: "https://aqhkecknthcdpailpcst.supabase.co/storage/v1/object/public/music/Oru-Maalai.mp3" },
-  { title: "Pavazha Malli", src: "https://aqhkecknthcdpailpcst.supabase.co/storage/v1/object/public/music/Pavazha%20Malli.mp3" },
-  { title: "Radhimaa", src: "https://aqhkecknthcdpailpcst.supabase.co/storage/v1/object/public/music/Radhimaa.mp3" },
-  { title: "Rowdy Baby", src: "https://aqhkecknthcdpailpcst.supabase.co/storage/v1/object/public/music/Rowdy-Baby-MassTamilan.org.mp3" },
-  { title: "Senjitaley", src: "https://aqhkecknthcdpailpcst.supabase.co/storage/v1/object/public/music/Senjitaley.mp3" },
-  { title: "Thangame", src: "https://aqhkecknthcdpailpcst.supabase.co/storage/v1/object/public/music/Thangame.mp3" },
-  { title: "Yakkai Thiri", src: "https://aqhkecknthcdpailpcst.supabase.co/storage/v1/object/public/music/Yakkai-Thiri.mp3" },
-  { title: "Kalyani", src: "https://aqhkecknthcdpailpcst.supabase.co/storage/v1/object/public/music/ytmp3free.cc_kalyani-with-shreya-ghoshal-official-music-video-arjn-kds-fifty4-ronn-shreya-ghoshal-youtubemp3free.org.mp3" },
+  { title: "Senjitaley", src: "https://dl.dropboxusercontent.com/scl/fi/g4nsitsxef4x0ljbtiw4n/Senjitaley.mp3?rlkey=kfwza4t6rnlpr2t6y2vw9w9kj&raw=1" },
+  { title: "Katchi Sera", src: "https://dl.dropboxusercontent.com/scl/fi/dx6wosdpxlpwoz9fu1kmj/Katchi-Sera.mp3?rlkey=8gtw4umgkdgb1wizur61cu8iq&raw=1" },
+  { title: "Rowdy Baby", src: "https://dl.dropboxusercontent.com/scl/fi/hlv74bxbci71qdr77rarv/Rowdy-Baby-MassTamilan.org.mp3?rlkey=4j8gotqjqjsx52lhr1vgqxmkx&raw=1" },
+  { title: "Jimikki Kammal", src: "https://dl.dropboxusercontent.com/scl/fi/b1sneqostdvtrnl26mm0s/Entammede-Jimikki-Kammal.mp3?rlkey=lukdd1jsap3y2sccr9ds2znr4&raw=1" },
+  { title: "Yaakai Thiri", src: "https://dl.dropboxusercontent.com/scl/fi/bdgoihwyaadvkbnorjd4q/Yakkai-Thiri.mp3?rlkey=zthnk78q4x6zzmoweiee07rjz&raw=1" },
+  { title: "Oru Maalai", src: "https://dl.dropboxusercontent.com/scl/fi/s3sbs597yhuwqrc3whwz2/Oru-Maalai.mp3?rlkey=le4vdarz6cv8fheiqs359k3u6&raw=1" },
+  { title: "Kalyani", src: "https://dl.dropboxusercontent.com/scl/fi/webi69hvzi1u5vld1dc2n/ytmp3free.cc_kalyani-with-shreya-ghoshal-official-music-video-arjn-kds-fifty4-ronn-shreya-ghoshal-youtubemp3free.org.mp3?rlkey=1ho8h8wzfm7k2qats64dlvxjs&raw=1" },
+  { title: "Pavazha Malli", src: "https://dl.dropboxusercontent.com/scl/fi/n3koqu2n3qjisx00bjud1/Pavazha-Malli.mp3?rlkey=eftuxq453msrbe0y0jwiojkp0&raw=1" },
+  { title: "Adada Mazhaida", src: "https://dl.dropboxusercontent.com/scl/fi/y4n6lmbliv5v4t465sxmu/Adada-Mazhaida.mp3?rlkey=tqk1l1bjo95tzajjqy68apxer&raw=1" },
+  { title: "Thangame", src: "https://dl.dropboxusercontent.com/scl/fi/66w57hzaixuj6rnwwdg8j/Thangame.mp3?rlkey=m6koq6ww3w717woo82rpnsovz&raw=1" },
+  { title: "Monica", src: "https://dl.dropboxusercontent.com/scl/fi/rrx84kj78s5rlwpa70xd9/Monica.mp3?rlkey=ao1zu99r3mgpv48vnj0aijefd&raw=1" },
+  { title: "Dippam Dappam", src: "https://dl.dropboxusercontent.com/scl/fi/7o1e5lpsemyd4ledpdyr5/Dippam-Dappam-MassTamilan.so.mp3?rlkey=sg6wknkohzarzrj2z1otv9123&raw=1" },
+  { title: "Kuchi Mittai", src: "https://dl.dropboxusercontent.com/scl/fi/n4edc1a68dkwwbhfimxjq/Kuchi-Mittai.mp3?rlkey=kzpe2lo19b6h9wgyy1nzjqf71&raw=1" },
 ];
 
 export function MusicWidget({ gsapReady }) {
@@ -30,12 +29,21 @@ export function MusicWidget({ gsapReady }) {
   const audioRef = useRef(null);
   const discRef = useRef(null);
   const wantPlay = useRef(false);
+  const [useAlt, setUseAlt] = useState(false);
+  const [failed, setFailed] = useState(false);
   const [curTime, setCurTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [scrubbing, setScrubbing] = useState(false);
   const [scrubTime, setScrubTime] = useState(0);
   const barRef = useRef(null);
-  const current = tracks[idx];
+  const base = tracks[idx];
+  /* Dropbox answers on two hosts; if one refuses to stream, fall back to the
+     other automatically before reporting a problem. */
+  const swapHost = (u) =>
+    u.indexOf("dl.dropboxusercontent.com") !== -1
+      ? u.replace("dl.dropboxusercontent.com", "www.dropbox.com")
+      : u.replace("www.dropbox.com", "dl.dropboxusercontent.com");
+  const current = base ? { ...base, src: useAlt ? swapHost(base.src) : base.src } : null;
 
   /* each song gives the disc its own pair of colours */
   const DISC_COLOURS = [
@@ -54,6 +62,8 @@ export function MusicWidget({ gsapReady }) {
 
   /* keep playing straight through when the track changes */
   useEffect(() => {
+    setUseAlt(false);
+    setFailed(false);
     setCurTime(0);
     setDuration(0);
   }, [idx]);
@@ -62,7 +72,8 @@ export function MusicWidget({ gsapReady }) {
     const a = audioRef.current;
     if (!a || !current || !wantPlay.current) return;
     a.play().catch(() => setPlaying(false));
-  }, [idx]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [idx, useAlt]);
 
   const seekFromEvent = (e) => {
     const el = barRef.current;
@@ -123,8 +134,12 @@ export function MusicWidget({ gsapReady }) {
     opacity: tracks.length > 1 ? 1 : 0.5,
   };
   const mid = { ...ctrl, width: 48, height: 48, fontSize: 19, opacity: current ? 1 : 0.5 };
-  const songName = !current ? "no song added yet" : current.title || "track " + (idx + 1);
-  const counter = current && tracks.length > 1 ? `${idx + 1} / ${tracks.length}` : "";
+  const songName = !current
+    ? "no song added yet"
+    : failed
+      ? "couldn't load this track"
+      : current.title || "track " + (idx + 1);
+  const counter = current && tracks.length > 1 && !failed ? `${idx + 1} / ${tracks.length}` : "";
 
   return (
     <div className="ambient-widget widget-left" style={{ left: "max(8px, calc(25vw - 300px))", top: 0, bottom: 0, display: "flex", flexDirection: "column", justifyContent: "center", textAlign: "center", pointerEvents: "none" }}>
@@ -133,6 +148,8 @@ export function MusicWidget({ gsapReady }) {
           ref={audioRef}
           src={current.src}
           preload="metadata"
+          /* state follows the audio itself, so the button can't say playing
+             when nothing is actually coming out */
           onPlay={() => setPlaying(true)}
           onPause={() => setPlaying(false)}
           onEnded={() => (tracks.length > 1 ? step(1) : setPlaying(false))}
@@ -141,6 +158,8 @@ export function MusicWidget({ gsapReady }) {
           onTimeUpdate={(e) => { if (!scrubbing) setCurTime(e.target.currentTime); }}
           onError={() => {
             setPlaying(false);
+            if (!useAlt) setUseAlt(true);      // try the other Dropbox host
+            else setFailed(true);              // both refused: say so
           }}
         />
       ) : null}
@@ -187,18 +206,21 @@ export function MusicWidget({ gsapReady }) {
             }}
           />
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, color: "#7a5a3a", marginTop: 2, fontWeight: 500 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 9.5, color: "#a2937a", marginTop: 2 }}>
           <span>{fmtTime(scrubbing ? scrubTime : curTime)}</span>
           <span>{fmtTime(duration)}</span>
         </div>
       </div>
-      
+
+      {/* now playing, between the disc and the buttons */}
+      {/* the song name, sized to the wider frame and allowed two lines before
+          it trims, with the track number on its own line underneath */}
       <div
         title={songName}
         style={{
-          marginTop: 7, width: 125, minHeight: 34,
-          fontSize: 13.5, lineHeight: 1.3, fontWeight: 700,
-          color: current ? "#4a3b28" : "#8a755a",
+          marginTop: 7, width: 125, minHeight: 30,
+          fontSize: 11.5, lineHeight: 1.3, fontWeight: 600,
+          color: current && !failed ? "#6b5836" : "#a2937a",
           display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical",
           overflow: "hidden", wordBreak: "break-word",
         }}
@@ -206,7 +228,7 @@ export function MusicWidget({ gsapReady }) {
         {songName}
       </div>
       {counter ? (
-        <div style={{ fontSize: 11, color: "#7a5a3a", marginTop: 2, fontWeight: 600, letterSpacing: ".04em" }}>{counter}</div>
+        <div style={{ fontSize: 9.5, color: "#a2937a", marginTop: 1, letterSpacing: ".04em" }}>{counter}</div>
       ) : null}
       <div style={{ marginTop: 6, display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}>
         <button onClick={() => step(-1)} aria-label="Previous song" className="btn btn-yellow" style={ctrl}>
@@ -223,3 +245,7 @@ export function MusicWidget({ gsapReady }) {
     </div>
   );
 }
+
+/* ===================== Orbiting photos widget ===================== */
+/* Pulls from the Photobooth Gallery photos; shows little doodle
+   placeholders until photos exist. Easy to swap to a fixed set later. */

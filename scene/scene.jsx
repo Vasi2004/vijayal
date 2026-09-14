@@ -348,10 +348,10 @@ export function AmbientBackground({ theme = "day", active = false }) {
         <FlowerDoodle petal="#f8c8d8" dur="3.15s" delay="-1.7s" size={27} />
         <GrassTuft h={31} dur="2.55s" delay="-2s" />
       </div>
-      
+
       {/* pixel couple wandering the grass: kept inside the scenery layer so
-      the flowers, grass band, trees and lampposts pass in front of them */}
-      <PixelCouple active={active} night={night} />
+          the flowers, grass band, trees and lampposts pass in front of them */}
+      <PixelCouple active={active} />
       </div>
 
       {/* windows and lanterns light up at night (above the relight filter) */}
